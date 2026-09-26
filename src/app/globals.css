@@ -117,3 +117,8 @@ body {
 .font-sixcaps {
   font-family: var(--font-six-caps), 'Six Caps', sans-serif;
 }
+
+
+.font-gotham {
+  font-family: 'Gotham', system-ui, -apple-system, sans-serif;
+}
