@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 400;
+  src: url('/fonts/gotham-book.woff2') format('woff2');
+  font-display: block;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 400;
+  src: url('/fonts/gotham-book-italic.woff2') format('woff2');
+  font-display: block;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 500;
+  src: url('/fonts/gotham-medium.woff2') format('woff2');
+  font-display: block;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 500;
+  src: url('/fonts/gotham-medium-italic.woff2') format('woff2');
+  font-display: block;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 700;
+  src: url('/fonts/gotham-bold.woff2') format('woff2');
+  font-display: block;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-weight: 700;
+  src: url('/fonts/gotham-bold-italic.woff2') format('woff2');
+  font-display: block;
+  font-style: italic;
+}
+
 :root {
+  --black: #000000;
+  --white: #ffffff;
+  --bezierFastoutSlowin: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --durationXS: 200ms;
+  --durationS: 300ms;
+  --durationM: 400ms;
+  --durationL: 600ms;
+  --durationXL: 800ms;
+  --fontStack: 'Gotham', system-ui, -apple-system, BlinkMacSystemFont, 'San Francisco', Roboto, 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif;
+  --fontWeightRegular: 400;
+  --fontWeightMedium: 500;
+  --fontWeightBold: 700;
+
+  --spaceOuter: 64px;
+  --spaceXS: 4px;
+  --spaceS: 8px;
+  --spaceM: 16px;
+  --spaceL: 24px;
+  --spaceXL: 32px;
+  --space2XL: 48px;
+  --space3XL: 64px;
+  --space4XL: 96px;
+  --space5XL: 128px;
+
+  --zIndex0: 0;
+  --zIndex1: 4;
+  --zIndex2: 8;
+  --zIndex3: 16;
+  --zIndex4: 32;
+  --zIndex5: 64;
+
+  /* Refined Hamish Williams dark slate titanium background (neither pure black nor white) */
   --background: #ffffff;
-  --foreground: #171717;
+  --backgroundLight: #f4f5f8;
+  --primary: #00e5ff;
+  --accent: #00e5ff;
+  --text: #16181f;
+  --textTitle: #16181f;
+  --textBody: rgba(22, 24, 31, 0.8);
+  --textLight: rgba(22, 24, 31, 0.6);
+  --headerNavFontSize: calc((16 / 16) * 1rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 1024px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --spaceOuter: 48px;
+  }
+}
+
+@media (max-width: 696px) {
+  :root {
+    --spaceOuter: 24px;
+    --headerNavFontSize: calc((22 / 16) * 1rem);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--fontStack);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.font-sixcaps {
+  font-family: var(--font-six-caps), 'Six Caps', sans-serif;
 }

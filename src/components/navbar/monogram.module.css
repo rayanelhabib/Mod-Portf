@@ -1,0 +1,22 @@
+.monogram {
+  fill: var(--textTitle, #ffffff);
+  transition: fill var(--durationL, 600ms) ease;
+}
+
+.highlight {
+  fill: var(--accent, #00e5ff);
+  opacity: 0;
+  transform: scale3d(1, 0, 1);
+  transform-origin: top;
+  transition: transform var(--durationM, 400ms) var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1)),
+    opacity 0.1s ease var(--durationM, 400ms);
+}
+
+:global(a:hover) .highlight,
+.monogram:hover .highlight {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+  transform-origin: bottom;
+  transition: transform var(--durationM, 400ms) var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1)),
+    opacity 0.1s ease;
+}

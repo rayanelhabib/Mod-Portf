@@ -1,0 +1,238 @@
+.navbar {
+  --headerNavFontSize: calc((16 / 16) * 1rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  width: var(--space2XL, 48px);
+  position: fixed;
+  top: var(--spaceOuter, 64px);
+  left: var(--spaceOuter, 64px);
+  bottom: var(--spaceOuter, 64px);
+  z-index: var(--zIndex4, 32);
+  isolation: isolate;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    top: 48px;
+    left: 48px;
+    bottom: 48px;
+  }
+}
+
+@media (max-width: 696px) {
+  .navbar {
+    --headerNavFontSize: calc((22 / 16) * 1rem);
+    top: 24px;
+    left: 24px;
+    bottom: auto;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--spaceS, 8px) var(--spaceS, 8px) 36px;
+  z-index: var(--zIndex2, 8);
+  pointer-events: auto;
+  text-decoration: none;
+}
+
+@media (max-width: 696px) {
+  .logo {
+    padding: 0;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: var(--space2XL, 48px);
+  pointer-events: auto;
+}
+
+@media (max-width: 696px) {
+  .nav {
+    display: none;
+  }
+}
+
+.navList {
+  transform: rotate(180deg);
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  writing-mode: vertical-lr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  padding: 18px 8px;
+  color: var(--textBody, rgba(255, 255, 255, 0.8));
+  font-family: 'Gotham', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+  font-size: var(--headerNavFontSize);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--durationS, 300ms) ease 0.1s;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.navLink:hover,
+.navLink:active,
+.navLink[aria-current='page'] {
+  color: var(--textTitle, #ffffff);
+}
+
+/* Parallel vertical accent line on outer side of link */
+.navLink::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: -2px;
+  width: 3px;
+  background: var(--accent, #00e5ff);
+  transform: scaleY(0) translateZ(0);
+  transform-origin: bottom;
+  transition: transform var(--durationM, 400ms) var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.navLink:hover::after,
+.navLink:active::after,
+.navLink[aria-current='page']::after {
+  transform: scaleY(1) translateZ(0);
+  transform-origin: top;
+}
+
+.navIcons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: var(--zIndex2, 8);
+  pointer-events: auto;
+  gap: 8px;
+}
+
+@media (max-width: 696px) {
+  .navIcons {
+    flex-direction: row;
+    position: absolute;
+    bottom: var(--spaceXL, 32px);
+    left: var(--spaceXL, 32px);
+  }
+}
+
+.navIconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spaceS, 8px);
+  width: var(--space2XL, 48px);
+  height: var(--space2XL, 48px);
+  color: var(--textLight, rgba(255, 255, 255, 0.6));
+  transition: color var(--durationM, 400ms) var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1)),
+    transform 0.2s ease;
+  text-decoration: none;
+}
+
+.navIconLink:hover,
+.navIconLink:active {
+  color: var(--accent, #00e5ff);
+  transform: scale(1.08);
+}
+
+.navIcon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: fill var(--durationM, 400ms) ease;
+}
+
+.mobileNav {
+  --backdrop: blur(24px) saturate(120%);
+
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  transform: translate3d(0, -100%, 0);
+  transition-property: transform, background;
+  transition-duration: var(--durationL, 600ms);
+  transition-timing-function: var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1));
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: var(--backdrop);
+  backdrop-filter: var(--backdrop);
+  pointer-events: auto;
+  z-index: calc(var(--zIndex4, 32) - 1);
+}
+
+@media (max-width: 696px) {
+  .mobileNav {
+    display: flex;
+  }
+}
+
+.mobileNav[data-visible='true'] {
+  transform: none;
+}
+
+.mobileNavLink {
+  width: 100%;
+  font-size: var(--headerNavFontSize);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: var(--textBody, rgba(255, 255, 255, 0.8));
+  padding: var(--spaceL, 24px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-duration: var(--durationS, 300ms);
+  transition-timing-function: var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1));
+  position: relative;
+  transform: translate3d(0, calc(var(--spaceXL, 32px) * -1), 0);
+}
+
+.mobileNavLink::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: var(--space3XL, 64px);
+  left: var(--space3XL, 64px);
+  height: 4px;
+  background: var(--accent, #00e5ff);
+  transform: scaleX(0) translateY(-1px);
+  transform-origin: right;
+  transition: transform var(--durationM, 400ms) var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.mobileNavLink:hover::after,
+.mobileNavLink:active::after,
+.mobileNavLink:focus::after {
+  transform: scaleX(1) translateY(-1px);
+  transform-origin: left;
+}
+
+.mobileNavLink[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}

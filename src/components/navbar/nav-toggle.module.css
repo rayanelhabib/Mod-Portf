@@ -1,0 +1,65 @@
+.toggle {
+  --offset: var(--spaceXS, 4px);
+  --inset: calc(var(--spaceOuter, 64px) - var(--offset));
+
+  position: fixed;
+  top: var(--inset);
+  right: var(--inset);
+  z-index: var(--zIndex4, 32);
+  display: none;
+  background: transparent;
+  border: none;
+  width: var(--space2XL, 48px);
+  height: var(--space2XL, 48px);
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 696px) {
+  .toggle {
+    display: flex;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.icon {
+  --iconSize: var(--spaceXL, 32px);
+
+  position: absolute;
+  transition-property: opacity, fill, transform;
+  transition-duration: var(--durationM, 400ms);
+  transition-timing-function: var(--bezierFastoutSlowin, cubic-bezier(0.4, 0, 0.2, 1));
+  opacity: 1;
+  transform: rotate(0deg);
+  fill: var(--textBody, rgba(255, 255, 255, 0.8));
+  width: var(--iconSize);
+  height: var(--iconSize);
+  transition-delay: 0.1s;
+}
+
+.icon[data-menu="true"][data-open="true"] {
+  opacity: 0;
+  transition-delay: 0s;
+  transform: rotate(45deg);
+}
+
+.icon[data-close="true"] {
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+.icon[data-close="true"][data-open="true"] {
+  opacity: 1;
+  transition-delay: 0.1s;
+  transform: rotate(0deg);
+}
