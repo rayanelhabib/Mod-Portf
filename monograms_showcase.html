@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monogram Design Lab — Rayan El Habib</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #090a0f;
+    color: #f1f5f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 60px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .header {
+    text-align: center;
+    max-width: 600px;
+  }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    color: #ffffff;
+  }
+  .header p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  .card {
+    background: #12141c;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .card:hover {
+    border-color: #00e5ff;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -12px rgba(0, 229, 255, 0.2);
+  }
+  .badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    color: #94a3b8;
+  }
+  .card:hover .badge {
+    background: rgba(0,229,255,0.15);
+    color: #00e5ff;
+  }
+  .preview {
+    width: 140px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .preview svg {
+    width: 100%;
+    height: 100%;
+    fill: #ffffff;
+    transition: fill 0.3s ease;
+  }
+  .card:hover .preview svg {
+    fill: #00e5ff;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin: 0;
+  }
+  .desc {
+    font-size: 13px;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Monogram Design Lab</h1>
+    <p>Hover over each emblem to see the accent glow animation in action</p>
+  </div>
+
+  <div class="grid">
+    <!-- Option 1: Razor Slice 'R' (Pure, Iconic, Luxury Tech) -->
+    <div class="card">
+      <span class="badge">Recommended</span>
+      <div class="preview">
+        <svg viewBox="0 0 48 29">
+          <!-- 
+            Monolithic 'R' with a clean 60° diagonal laser cut through the body 
+            and the signature Hamish floating shard 
+          -->
+          <path d="M2 0h17c5.8 0 10 3.2 10 8.2 0 3.2-1.8 5.8-4.8 7L20 13c1.5-.7 2.4-2 2.4-3.8 0-2.4-1.8-4-4.8-4H7.5v9.8L2 17.8V0Zm0 21.5 5.5-2.8V29H2v-7.5Zm11.2-4.5 7-3.6L31 29h-7.5l-9.3-12Zm33.5-14.2A2 2 0 0 0 45 0h-7l5.5 10 3.2-7.2Z" />
+        </svg>
+      </div>
+      <h3 class="title">1. The Razor-Cut 'R'</h3>
+      <p class="desc">A single iconic letter R cleanly bisected by a 60° diagonal laser cut. Ultra modern, punchy, and instantly recognizable at small sizes.</p>
+    </div>
+
+    <!-- Option 2: The Interlocking Stencil 'RH' -->
+    <div class="card">
+      <span class="badge">Dual Letter</span>
+      <div class="preview">
+        <svg viewBox="0 0 48 29">
+          <!-- 
+            Interlocked R + H:
+            Rayan's R loops across and connects to the H stem via a sharp angular bridge,
+            with clean negative spaces and parallel diagonal cuts.
+          -->
+          <path d="M0 0h15c5.5 0 9.2 3 9.2 7.8 0 2.8-1.5 5.2-4 6.4L25 15h4V0h5.5v29H29v-9h-4.8L16.5 29H10l6.2-12.2c-.8-.2-1.6-.6-2.2-1.2H5.5V29H0V0Zm5.5 4.8v5.5H15c2 0 3.2-1 3.2-2.8s-1.2-2.7-3.2-2.7H5.5Zm41.2-2A2 2 0 0 0 45 0h-6.8l5.2 9.6 3.3-6.8Z" />
+        </svg>
+      </div>
+      <h3 class="title">2. Interlocking Stencil 'RH'</h3>
+      <p class="desc">Fuses R and H into one continuous sculptural ribbon. The leg of R seamlessly becomes the crossbar of H.</p>
+    </div>
+
+    <!-- Option 3: Cyber-Origami 'RH' (Exact Hamish Williams Flow) -->
+    <div class="card">
+      <span class="badge">Aerospace</span>
+      <div class="preview">
+        <svg viewBox="0 0 48 29">
+          <!-- 
+            Origami band structure with 100% uniform 6px stroke and 61° parallel slant.
+          -->
+          <path d="M0 0h16a6 6 0 0 1 5.2 3.1L24 8.2l2.6-5.1A6 6 0 0 1 31.8 0H41v5.8h-7.8l-4.2 9.2 6.5 14h-6.8l-4.5-9.6-4.5 9.6H13L20.8 13 16.5 5.8H6V29H0V0Zm46.7 2.8A2 2 0 0 0 45 0h-7l5.5 10 3.2-7.2Z" />
+        </svg>
+      </div>
+      <h3 class="title">3. Cyber-Origami 'RH'</h3>
+      <p class="desc">Continuous folded metallic ribbon with zero boxy lines. Every stroke is locked to the 61.2° aerodynamic slant.</p>
+    </div>
+  </div>
+</body>
+</html>
