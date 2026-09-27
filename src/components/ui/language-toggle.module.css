@@ -1,0 +1,140 @@
+/* Uiverse.io checkbox-wrapper-41 - Option 1: Extreme Proximity Acute Angle Hugging */
+.wrapper {
+  --size: 48px;
+  --border-color: #16181f;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 14px 14px;
+  transition: transform 0.2s ease;
+}
+
+.wrapper:hover {
+  transform: translateY(-1px);
+}
+
+.input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--size);
+  height: calc(var(--size) / 2);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px 30px 30px 30px;
+  box-shadow: 0 3px 8px -2px rgba(22, 24, 31, 0.12);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin: 0;
+  display: block;
+
+  /* État initial EN : Fond avec le vrai drapeau du Royaume-Uni / Union Jack */
+  background-color: #012169;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3CclipPath id='t'%3E%3Cpath d='M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z'/%3E%3C/clipPath%3E%3Cpath d='M0,0 v30 h60 v-30 z' fill='%23012169'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0,0 L60,30 M60,0 L0,30' clip-path='url(%23t)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath d='M30,0 v30 M0,15 h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30,0 v30 M0,15 h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Curseur blanc céramique portant le label de la langue active */
+.input::before {
+  content: "EN";
+  position: absolute;
+  width: calc(var(--size) / 2);
+  height: calc(var(--size) / 2);
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(0.74);
+  border: 1.4px solid var(--border-color);
+  border-radius: 12px 30px 30px 30px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: #012169;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 8.5px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.input:hover {
+  box-shadow: 0 5px 14px -2px rgba(22, 24, 31, 0.18);
+}
+
+/* État actif DE : Fond avec le vrai drapeau allemand tricolore (Noir, Rouge, Or) */
+.input:checked {
+  background-color: #16181f;
+  background-image: linear-gradient(180deg, #16181f 33.3%, #dc2626 33.3%, #dc2626 66.6%, #ffce00 66.6%);
+  border-radius: 30px 30px 12px 30px;
+}
+
+.input:checked::before {
+  content: "DE";
+  left: 50%;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: #16181f;
+  border-radius: 30px 30px 12px 30px;
+}
+
+/* Pastille Ronde UK - Option 1 Extrême Proximité (~2.5px de liseré d'air) */
+.flagEn {
+  position: absolute;
+  top: 3.5px;
+  left: 3.5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  display: block;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+/* Pastille Ronde Allemagne - Option 1 Extrême Proximité (~2.5px de liseré d'air) */
+.flagDe {
+  position: absolute;
+  bottom: 3.5px;
+  right: 3.5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  display: block;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+/* État Actif DE : Allemagne active & ultra-proche, UK estompé */
+.input:checked ~ .flagEn {
+  filter: grayscale(0.85) opacity(0.35);
+  transform: scale(0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.input:checked ~ .flagDe {
+  filter: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 1.2px #ffffff, 0 1px 4px rgba(245, 158, 11, 0.5);
+}
+
+/* État Actif EN : UK actif & ultra-proche, Allemagne estompée */
+.input:not(:checked) ~ .flagEn {
+  filter: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 1.2px #ffffff, 0 1px 4px rgba(1, 33, 105, 0.5);
+}
+
+.input:not(:checked) ~ .flagDe {
+  filter: grayscale(0.85) opacity(0.35);
+  transform: scale(0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}

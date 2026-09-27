@@ -1,13 +1,35 @@
+﻿"use client";
+
 import { Navbar } from "@/components/navbar";
 import { GradientWave } from "@/components/ui/gradient-wave";
 import { BounceLine } from "@/components/ui/bounce-line";
 import { HeroResumeButton } from "@/components/ui/hero-resume-button";
+import { LanguageToggle } from "@/components/ui/language-toggle";
+import { LivePulseBadge } from "@/components/realtime";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Home() {
+  const { lang } = useLanguage();
+  const isDe = lang === "de";
+
+  const roleText = isDe 
+    ? "System-, Netzwerk- & Software-Ingenieur" 
+    : "Systems, Network & Software Engineer";
+    
+  const coreText = isDe ? "KERN VON" : "CORE OF";
+
   return (
     <div className="relative min-h-screen bg-white text-[#16181f] selection:bg-cyan-400 selection:text-black overflow-x-hidden">
       {/* Hamish Williams Left Rail Navbar with RH Monogram */}
       <Navbar />
+
+      {/* Top Right Action Bar (Audio Ambience + Language Switcher) */}
+      <header className="fixed top-6 right-6 sm:top-8 sm:right-10 lg:top-8 lg:right-12 z-50 flex items-center">
+        <LanguageToggle />
+      </header>
+
+      {/* Realtime Live Guestbook Badge (Floating Bottom-Right) */}
+      <LivePulseBadge />
 
       {/* Hero Section with WebGL Gradient Wave & Ambient Mist */}
       <section className="relative min-h-screen w-full flex flex-col justify-start px-6 sm:px-16 md:px-20 lg:pl-36 lg:pr-12 xl:pr-14 pt-20 sm:pt-24 lg:pt-32 xl:pt-36 pb-10 overflow-hidden">
@@ -39,34 +61,37 @@ export default function Home() {
             <div className="lg:col-span-7 xl:col-span-6 flex flex-col items-start justify-center pb-2 sm:pb-4 pt-2 lg:pl-6 xl:pl-10 2xl:pl-14">
               
               {/* Nom en haut en capitales espacées élégantes (Style Hisami Kurita / Hamish Williams) */}
-              <h2 className="font-sans text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-[0.34em] text-[#16181f]/75 mb-3 sm:mb-4 select-none font-medium">
-                Rayan El Habib
+              <h2 className="font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.24em] sm:tracking-[0.28em] text-[#16181f]/70 mb-3 sm:mb-4 select-none font-medium">
+                {roleText}
               </h2>
 
-              {/* Titre principal en typographie Six Caps (Hisami Kurita) */}
+              {/* Titre principal monumental Style Hisami Kurita : CORE OF / RAYAN EL HABIB */}
               <div className="flex flex-col w-full select-none">
-                {/* Ligne 1 : DESIGNER avec trait horizontal prolongeant */}
+                {/* Ligne 1 : CORE OF avec trait horizontal prolongeant */}
                 <div className="flex items-center gap-4 sm:gap-6 w-full">
-                  <span className="font-sixcaps text-7xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[10rem] 2xl:text-[11rem] tracking-normal text-[#16181f] leading-[0.80] uppercase">
-                    Designer
+                  <span className="font-sixcaps text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.8rem] 2xl:text-[9.8rem] tracking-tight text-[#16181f] leading-[0.80] uppercase whitespace-nowrap">
+                    {coreText}
                   </span>
-                  <div className="h-[2px] bg-[#16181f]/20 flex-1 rounded-full relative top-1" />
+                  <div className="flex-1 relative top-1 flex items-center">
+                  <BounceLine
+                    strokeColor="#16181f"
+                    strokeWidth={1.5}
+                    className="opacity-30 hover:opacity-100 transition-opacity"
+                  />
+                </div>
                 </div>
 
-                {/* Ligne 2 : + DEVELOPER */}
-                <div className="flex items-center mt-1 sm:mt-2">
-                  <span className="font-light text-cyan-500 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl mr-2 sm:mr-3 select-none leading-none">
-                    +
-                  </span>
-                  <span className="font-sixcaps text-7xl sm:text-8xl md:text-9xl lg:text-[8.5rem] xl:text-[10rem] 2xl:text-[11rem] tracking-normal text-[#16181f] leading-[0.80] uppercase">
-                    Developer
+                {/* Ligne 2 : RAYAN EL HABIB */}
+                <div className="flex items-center mt-1 sm:mt-2 pl-10 sm:pl-16 md:pl-24 lg:pl-28 xl:pl-36 2xl:pl-44">
+                  <span className="font-sixcaps text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.8rem] 2xl:text-[9.8rem] tracking-tight text-[#16181f] leading-[0.80] uppercase whitespace-nowrap">
+                    Rayan El Habib
                   </span>
                 </div>
               </div>
 
-              {/* Bouton Resume Moderne & Épuré (Incliné Hisami Kurita) */}
+              {/* Bouton Resume Moderne & Epuré (Incliné Hisami Kurita) */}
               <div className="mt-8 sm:mt-10">
-                <HeroResumeButton href="/cv.pdf" />
+                <HeroResumeButton />
               </div>
 
             </div>
@@ -89,7 +114,7 @@ export default function Home() {
 
           </div>
 
-          {/* Séparateur interactif élastique Hisami Kurita (AppBounceLine) - La silhouette est posée dessus */}
+          {/* Séparateur interactif élastique Hisami Kurita (BounceLine) - La silhouette est posée dessus */}
           <div className="w-full relative z-30 mt-4 sm:mt-6">
             <BounceLine
               strokeColor="#16181f"

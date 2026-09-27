@@ -1,0 +1,16 @@
+[
+  {
+    "id": "rayan-welcome",
+    "type": "message",
+    "userId": "rayan-host",
+    "username": "Rayan",
+    "color": "#0284c7",
+    "flag": "🇫🇷",
+    "avatarStyle": "lorelei",
+    "avatarSeed": "rayan-host",
+    "content": "Welcome to my portfolio! Feel free to leave a note or feedback in the guestbook. 👋",
+    "createdAt": "2026-09-27T10:00:00.000Z",
+    "isHost": true,
+    "likes": 0
+  }
+]

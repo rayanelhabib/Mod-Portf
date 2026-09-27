@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -6,14 +6,16 @@ import { usePathname } from 'next/navigation';
 import { Monogram } from './monogram';
 import { Icon } from './icon';
 import { NavToggle } from './nav-toggle';
-import { navLinks, socialLinks } from './nav-data';
+import { navLinks as defaultNavLinks, socialLinks } from './nav-data';
 import styles from './navbar.module.css';
+import { useLanguage } from '@/hooks/use-language';
 
 export const Navbar = () => {
   const [current, setCurrent] = useState<string>('/#projects');
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -37,6 +39,21 @@ export const Navbar = () => {
     if (menuOpen) setMenuOpen(false);
   };
 
+  // Translations
+  const navTranslations: Record<string, { en: string, de: string }> = {
+    'Projects': { en: 'Projects', de: 'Projekte' },
+    'Details': { en: 'Details', de: 'Details' },
+    'Articles': { en: 'Articles', de: 'Artikel' },
+    'Contact': { en: 'Contact', de: 'Kontakt' },
+  };
+
+  const getTranslatedLabel = (label: string) => {
+    if (navTranslations[label]) {
+      return navTranslations[label][lang] || label;
+    }
+    return label;
+  };
+
   return (
     <header className={styles.navbar} ref={headerRef}>
       {/* Top Monogram Logo */}
@@ -56,7 +73,7 @@ export const Navbar = () => {
       {/* Desktop Vertical Rail */}
       <nav className={styles.nav}>
         <div className={styles.navList}>
-          {navLinks.map(({ label, pathname: linkPath }) => (
+          {defaultNavLinks.map(({ label, pathname: linkPath }) => (
             <Link
               href={linkPath}
               key={label}
@@ -65,7 +82,7 @@ export const Navbar = () => {
               aria-current={getCurrent(linkPath)}
               onClick={() => handleNavItemClick(linkPath)}
             >
-              {label}
+              {getTranslatedLabel(label)}
             </Link>
           ))}
         </div>
@@ -74,7 +91,7 @@ export const Navbar = () => {
 
       {/* Mobile Drawer */}
       <nav className={styles.mobileNav} data-visible={menuOpen}>
-        {navLinks.map(({ label, pathname: linkPath }, index) => (
+        {defaultNavLinks.map(({ label, pathname: linkPath }, index) => (
           <Link
             href={linkPath}
             key={label}
@@ -86,7 +103,7 @@ export const Navbar = () => {
               transitionDelay: `${300 + index * 50}ms`,
             }}
           >
-            {label}
+            {getTranslatedLabel(label)}
           </Link>
         ))}
         <NavbarIcons />
@@ -99,19 +116,18 @@ interface NavbarIconsProps {
   desktop?: boolean;
 }
 
-const NavbarIcons = ({ desktop }: NavbarIconsProps) => (
-  <div className={styles.navIcons}>
+const NavbarIcons = ({ desktop = false }: NavbarIconsProps) => (
+  <div className={desktop ? styles.navIcons : styles.mobileNavIcons}>
     {socialLinks.map(({ label, url, icon }) => (
       <a
         key={label}
-        data-navbar-item={desktop ? true : undefined}
-        className={styles.navIconLink}
-        aria-label={label}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
+        className={desktop ? styles.navIconLink : styles.mobileNavLink}
+        aria-label={label}
       >
-        <Icon className={styles.navIcon} icon={icon} />
+        <Icon icon={icon} />
       </a>
     ))}
   </div>
