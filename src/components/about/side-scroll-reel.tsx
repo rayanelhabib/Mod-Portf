@@ -72,22 +72,30 @@ export function SideScrollReel() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
+  // Exact Hisami Kurita SelectProjectSideScrollSection scroll animation:
+  // Container height ~3200px, wrapper pinned 100vh for 2600px of scrub.
+  // The track scrolls smoothly until the last element (ARCHIVE LAB) is completely
+  // revealed and centered on screen with generous trailing space and full room for both popout cards.
   useEffect(() => {
     if (!containerRef.current || !wrapperRef.current || !trackRef.current) return;
 
     const ctx = gsap.context(() => {
-      const scrollDist = trackRef.current!.scrollWidth - window.innerWidth + 240;
-
       gsap.fromTo(
         trackRef.current,
-        { x: window.innerWidth * 0.35 },
         {
-          x: -scrollDist,
+          x: () => window.innerWidth * 0.35,
+        },
+        {
+          x: () => {
+            if (!trackRef.current) return 0;
+            // Scroll all the way so the last item and its end padding clear the viewport
+            return -(trackRef.current.scrollWidth - window.innerWidth);
+          },
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=1800px",
+            end: "+=2600px",
             pin: wrapperRef.current,
             scrub: 0.8,
             anticipatePin: 1,
@@ -109,7 +117,7 @@ export function SideScrollReel() {
     <>
       <div
         ref={containerRef}
-        className="relative w-full h-[2200px] select-none"
+        className="relative w-full h-[3200px] select-none"
       >
         {/* Pinned 100vh stage */}
         <div
@@ -140,7 +148,7 @@ export function SideScrollReel() {
               <div className="relative w-full overflow-visible py-6">
                 <div
                   ref={trackRef}
-                  className="flex items-center gap-16 sm:gap-24 w-max will-change-transform"
+                  className="flex items-center gap-16 sm:gap-24 w-max will-change-transform pr-[38vw]"
                 >
                   {SIDE_PROJECTS.map((item, index) => {
                     const isHover = hoveredIdx === index;
