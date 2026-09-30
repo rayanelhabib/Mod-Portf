@@ -122,3 +122,29 @@ body {
 .font-gotham {
   font-family: 'Gotham', system-ui, -apple-system, sans-serif;
 }
+
+@keyframes loop-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-loop-scroll {
+  animation: loop-scroll 32s linear infinite;
+}
+
+@keyframes loop-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-loop-scroll-reverse {
+  animation: loop-scroll-reverse 34s linear infinite;
+}

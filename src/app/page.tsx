@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Navbar } from "@/components/navbar";
 import { GradientWave } from "@/components/ui/gradient-wave";
@@ -7,6 +7,9 @@ import { HeroResumeButton } from "@/components/ui/hero-resume-button";
 import { LanguageToggle } from "@/components/ui/language-toggle";
 import { LivePulseBadge } from "@/components/realtime";
 import { useLanguage } from "@/hooks/use-language";
+import { DoubleBounceMarquee } from "@/components/ui/double-bounce-marquee";
+import { ProjectsSection } from "@/components/projects/projects-section";
+import { DetailsSection } from "@/components/details/details-section";
 
 export default function Home() {
   const { lang } = useLanguage();
@@ -73,12 +76,12 @@ export default function Home() {
                     {coreText}
                   </span>
                   <div className="flex-1 relative top-1 flex items-center">
-                  <BounceLine
-                    strokeColor="#16181f"
-                    strokeWidth={1.5}
-                    className="opacity-30 hover:opacity-100 transition-opacity"
-                  />
-                </div>
+                    <BounceLine
+                      strokeColor="#16181f"
+                      strokeWidth={1.5}
+                      className="opacity-30 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
                 </div>
 
                 {/* Ligne 2 : RAYAN EL HABIB */}
@@ -125,10 +128,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section suivante: Fond blanc pur qui s'enchaîne sans coupure */}
-      <section className="relative z-20 min-h-[40vh] w-full bg-white px-6 sm:px-16 md:px-24 lg:pl-36 lg:pr-24 py-20 flex flex-col items-center">
-        {/* Contenu suivant */}
-      </section>
+      {/* Double BounceLine Marquee (Option A Tech Stack) */}
+      <DoubleBounceMarquee />
+
+      {/* Option 1: Selected Projects Showcase (#projects) */}
+      <ProjectsSection />
+
+      {/* Option 4: Details & Architecture Philosophy (#details) */}
+      <DetailsSection />
     </div>
   );
 }

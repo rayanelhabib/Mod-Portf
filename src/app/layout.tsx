@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Six_Caps } from "next/font/google";
+import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,8 +21,8 @@ const sixCaps = Six_Caps({
 });
 
 export const metadata: Metadata = {
-  title: "Rayan El Habib | Portfolio",
-  description: "Portfolio of Rayan El Habib",
+  title: "Rayan El Habib | Systems, Network & Software Engineer",
+  description: "Portfolio of Rayan El Habib — Systems, Low-Latency Network Internals, Kernel Observability & High-Performance Software.",
 };
 
 export default function RootLayout({
@@ -34,7 +36,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${sixCaps.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-[#16181f]">
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
